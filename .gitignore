@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+
+# 本地数据与密钥：绝对不要提交
+.env
+backend/.env
+backend/data/
+backend/chroma_db/
+backend/cache/
+backend/exports/
+backend/eval_results/
+
+# Node（dist 是构建产物，保留在仓库里，方便不装 Node 直接启动）
+frontend/node_modules/
+frontend/dist-ssr/
+*.local
+
+# 编辑器 / 系统
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# 日志
+*.log

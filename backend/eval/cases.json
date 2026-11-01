@@ -1,0 +1,175 @@
+{
+  "version": 1,
+  "cases": [
+    {
+      "id": "vocab-peril",
+      "category": "vocab",
+      "question": "peril 是什么意思？",
+      "expect_keywords": [
+        "严重危险"
+      ],
+      "expect_page": 1,
+      "source": "四六级核心1500词.pdf"
+    },
+    {
+      "id": "vocab-authority",
+      "category": "vocab",
+      "question": "authority 是什么意思？",
+      "expect_keywords": [
+        "权力"
+      ],
+      "expect_page": 8,
+      "source": "四六级核心1500词.pdf"
+    },
+    {
+      "id": "vocab-innovate",
+      "category": "vocab",
+      "question": "innovate 是什么意思？",
+      "expect_keywords": [
+        "创新"
+      ],
+      "expect_page": 15,
+      "source": "四六级核心1500词.pdf"
+    },
+    {
+      "id": "vocab-restrain",
+      "category": "vocab",
+      "question": "restrain 是什么意思？",
+      "expect_keywords": [
+        "约束"
+      ],
+      "expect_page": 22,
+      "source": "四六级核心1500词.pdf"
+    },
+    {
+      "id": "vocab-installment",
+      "category": "vocab",
+      "question": "installment 是什么意思？",
+      "expect_keywords": [
+        "分期付款"
+      ],
+      "expect_page": 28,
+      "source": "四六级核心1500词.pdf"
+    },
+    {
+      "id": "vocab-splendid",
+      "category": "vocab",
+      "question": "splendid 是什么意思？",
+      "expect_keywords": [
+        "辉煌的"
+      ],
+      "expect_page": 36,
+      "source": "四六级核心1500词.pdf"
+    },
+    {
+      "id": "vocab-brief",
+      "category": "vocab",
+      "question": "brief 是什么意思？",
+      "expect_keywords": [
+        "简短的"
+      ],
+      "expect_page": 44,
+      "source": "四六级核心1500词.pdf"
+    },
+    {
+      "id": "vocab-orient",
+      "category": "vocab",
+      "question": "orient 是什么意思？",
+      "expect_keywords": [
+        "确定方向"
+      ],
+      "expect_page": 51,
+      "source": "四六级核心1500词.pdf"
+    },
+    {
+      "id": "vocab-gross",
+      "category": "vocab",
+      "question": "gross 是什么意思？",
+      "expect_keywords": [
+        "总的"
+      ],
+      "expect_page": 58,
+      "source": "四六级核心1500词.pdf"
+    },
+    {
+      "id": "vocab-exhibition",
+      "category": "vocab",
+      "question": "exhibition 是什么意思？",
+      "expect_keywords": [
+        "展览"
+      ],
+      "expect_page": 66,
+      "source": "四六级核心1500词.pdf"
+    },
+    {
+      "id": "vocab-broad",
+      "category": "vocab",
+      "question": "broad 是什么意思？",
+      "expect_keywords": [
+        "宽阔的"
+      ],
+      "expect_page": 72,
+      "source": "四六级核心1500词.pdf"
+    },
+    {
+      "id": "vocab-merchant",
+      "category": "vocab",
+      "question": "merchant 是什么意思？",
+      "expect_keywords": [
+        "商人"
+      ],
+      "expect_page": 79,
+      "source": "四六级核心1500词.pdf"
+    },
+    {
+      "id": "know-modules",
+      "category": "knowledge",
+      "question": "《知识清单》分几个模块？",
+      "expect_keywords": [
+        "6"
+      ]
+    },
+    {
+      "id": "know-module-2",
+      "category": "knowledge",
+      "question": "模块二讲的是什么？",
+      "expect_keywords": [
+        "智能算法"
+      ]
+    },
+    {
+      "id": "know-cnn",
+      "category": "knowledge",
+      "question": "CNN 的三大特性是什么？",
+      "expect_keywords": [
+        "局部连接",
+        "权值共享"
+      ]
+    },
+    {
+      "id": "know-backprop",
+      "category": "knowledge",
+      "question": "反向传播用了什么数学法则？",
+      "expect_keywords": [
+        "链式法则"
+      ]
+    },
+    {
+      "id": "know-glm",
+      "category": "knowledge",
+      "question": "GLCM 和颜色直方图的区别是什么？",
+      "expect_keywords": [
+        "像素对"
+      ]
+    },
+    {
+      "id": "meta-docs",
+      "category": "meta",
+      "question": "知识库里有哪些文档？",
+      "expect_keywords": [
+        "知识清单",
+        "四六级"
+      ]
+    }
+  ]
+}
