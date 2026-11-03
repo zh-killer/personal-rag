@@ -98,14 +98,25 @@ personal-rag/
 ├── start.bat                 # 一键启动
 ├── backend/
 │   ├── run.py                # 启动器：依赖自检 / 端口探测 / 自动开浏览器
-│   ├── requirements.txt
+│   ├── requirements.txt      # 运行依赖
+│   ├── requirements-dev.txt  # 开发依赖（pytest / ruff）
+│   ├── pytest.ini
 │   ├── app/
-│   │   ├── main.py           # FastAPI 路由、SSE、静态托管
+│   │   ├── main.py           # 应用装配：lifespan / 中间件 / include_router / 静态托管
+│   │   ├── deps.py           # 进程内单例（索引、检索组件、会话、用量）
+│   │   ├── schemas.py        # 请求 / 响应模型
+│   │   ├── api/              # 路由层
+│   │   │   ├── documents.py  # 上传 / 入库任务 / 文档台账 / 原文与页面渲染
+│   │   │   ├── query.py      # 关键词检索 / 问答 / SSE 流式
+│   │   │   ├── conversations.py # 对话增删改查与导出
+│   │   │   ├── system.py     # 健康检查 / 统计 / 缓存 / 用量 / 备份
+│   │   │   └── common.py     # SSE 帧、上下文裁剪、片段截取等共用函数
 │   │   ├── core/             # 配置、LLM 客户端
 │   │   ├── indexing/         # 解析 / OCR / 切块 / 向量化 / FTS / 词条 / 版面还原
 │   │   ├── retrieval/        # 路由 / 改写 / 召回 / 重排 / 生成 / 精准阅读 / 引用核对
 │   │   ├── services/         # 后台任务 / 对话 / 用量 / 备份
 │   │   └── cache/            # QA 缓存
+│   ├── tests/                # 单元测试（分词 / 切块 / 引用核对 / SSE 帧）
 │   ├── scripts/              # selftest.py / eval.py
 │   ├── eval/                 # cases.json / report.md
 │   └── data/                 # 上传的原始文档（git 忽略）
@@ -142,6 +153,18 @@ python backend/scripts/eval.py --limit 5
 ```
 
 当前基线：**18/18 通过**（vocab 12/12、knowledge 5/5、meta 1/1）；词条题走结构化直查，约 0.01 秒；知识题真实调用模型，约 1–3 秒。详见 `docs/EVALUATION.md`。
+
+## 单元测试
+
+评测要连真实模型和知识库，跑一次几十秒；单元测试只覆盖纯逻辑，一秒内跑完：
+
+```bash
+cd backend
+pip install -r requirements-dev.txt   # 只装测试依赖，不影响运行
+python -m pytest                       # 21 个用例
+```
+
+覆盖的是最容易悄悄坏掉、但端到端评测又看不出来的地方：分词与疑问句关键词抽取、切块是否保留页码和 `doc_id`、引用核对的三种状态（已核对 / 未匹配 / 未引用）、SSE 帧遇到换行是否还能只占一行 `data:`。
 
 ## 已知限制
 

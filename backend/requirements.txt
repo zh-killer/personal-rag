@@ -1,31 +1,32 @@
 # PersonalRAG 后端依赖
 # 安装：pip install -r requirements.txt
+#
+# 关键依赖加了上限：chromadb / sentence-transformers 这类大版本升级会改接口或
+# 默认模型，不设上限的话，半年后同一份代码在干净环境里装出来就未必跑得动。
 
 # Web
-fastapi>=0.110
-uvicorn[standard]>=0.27
-python-multipart>=0.0.9
+fastapi>=0.110,<1.0
+uvicorn[standard]>=0.27,<1.0
+python-multipart>=0.0.9,<1.0
 
 # 配置
-python-dotenv>=1.0
+python-dotenv>=1.0,<2.0
 
 # LLM
-openai>=1.40
+openai>=1.40,<3.0
 
-# 检索（向量库 + 关键词检索已改为内置 SQLite FTS5，无需 rank-bm25）
-chromadb>=1.0
+# 检索（向量库；关键词检索已改为内置 SQLite FTS5，无需 rank-bm25）
+chromadb>=1.0,<2.0
 
 # 文档解析
-PyMuPDF>=1.24
+PyMuPDF>=1.24,<2.0
 
 # 本地向量模型（EMBEDDING_PROVIDER=local 时必需）
-sentence-transformers>=3.0
+sentence-transformers>=3.0,<6.0
 
 # 离线 OCR（扫描件 / 图片入库）
-rapidocr-onnxruntime>=1.4
-pyclipper>=1.3
-shapely>=2.0
+rapidocr-onnxruntime>=1.4,<2.0
+pyclipper>=1.3,<2.0
+shapely>=2.0,<3.0
 
-# 开发/测试（可选）
-# pytest>=8.0
-# ruff>=0.6
+# 开发 / 测试依赖见 requirements-dev.txt
