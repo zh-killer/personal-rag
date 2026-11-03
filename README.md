@@ -1,5 +1,7 @@
 # PersonalRAG
 
+[![tests](https://github.com/zh-killer/personal-rag/actions/workflows/tests.yml/badge.svg)](https://github.com/zh-killer/personal-rag/actions/workflows/tests.yml)
+
 本地优先的个人知识库问答系统：把课程笔记、单词表、扫描件丢进去，用自然语言提问，答案带**页码级来源**；也可以直接搜关键词，点结果跳到原文那一页。
 
 索引、对话、词条全部存在本机；向量模型离线运行，只有生成答案时调用大模型 API。
@@ -95,10 +97,12 @@ npm run build      # 构建到 dist，后端直接托管
 
 ```
 personal-rag/
+├── .github/workflows/tests.yml  # CI：装最小测试依赖跑 pytest
 ├── start.bat                 # 一键启动
 ├── backend/
 │   ├── run.py                # 启动器：依赖自检 / 端口探测 / 自动开浏览器
 │   ├── requirements.txt      # 运行依赖
+│   ├── requirements-test.txt # 单测依赖（不含 torch / 向量模型 / OCR）
 │   ├── requirements-dev.txt  # 开发依赖（pytest / ruff）
 │   ├── pytest.ini
 │   ├── app/
@@ -160,11 +164,13 @@ python backend/scripts/eval.py --limit 5
 
 ```bash
 cd backend
-pip install -r requirements-dev.txt   # 只装测试依赖，不影响运行
+pip install -r requirements-test.txt   # 只装单测需要的包，不拉向量模型和 OCR
 python -m pytest                       # 21 个用例
 ```
 
 覆盖的是最容易悄悄坏掉、但端到端评测又看不出来的地方：分词与疑问句关键词抽取、切块是否保留页码和 `doc_id`、引用核对的三种状态（已核对 / 未匹配 / 未引用）、SSE 帧遇到换行是否还能只占一行 `data:`。
+
+CI（GitHub Actions）装的是同一份 `requirements-test.txt`，不下载 torch 和向量模型，整套约 20 秒；想更快可以本地跑 `pytest -q`。
 
 ## 已知限制
 

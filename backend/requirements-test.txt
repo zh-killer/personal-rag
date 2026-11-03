@@ -1,0 +1,11 @@
+# 只给单元测试用的最小依赖。
+#
+# 为什么不是 requirements.txt：那里面还有 sentence-transformers（会拉 torch，约 2.5 GB）和
+# RapidOCR，而单测只覆盖分词 / 切块 / 引用核对 / SSE 拼帧这些纯逻辑，不加载向量模型、也不跑 OCR。
+# CI 装这一个文件就够了，整套跑完约 20 秒。
+fastapi>=0.110,<1.0
+python-multipart>=0.0.9,<1.0
+chromadb>=1.0,<2.0
+PyMuPDF>=1.24,<2.0
+python-dotenv>=1.0,<2.0
+pytest>=8.0,<9.0

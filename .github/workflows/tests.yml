@@ -1,0 +1,26 @@
+name: tests
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  pytest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: backend/requirements-test.txt
+
+      # 只装单测需要的包：不拉 torch / 向量模型 / OCR，整套依赖约 100 MB
+      - name: 安装测试依赖
+        run: pip install -r backend/requirements-test.txt
+
+      - name: 运行单元测试
+        working-directory: backend
+        run: python -m pytest
